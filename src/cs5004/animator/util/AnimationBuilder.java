@@ -1,5 +1,11 @@
 package cs5004.animator.util;
 
+/**
+ * This is starter code to create an AnimationBuilder object with the class
+ * AnimationBuilder.
+ *
+ * @param <Model>> is a generic
+ */
 public interface AnimationBuilder<Model> {
   /**
    * Constructs a final document.

@@ -382,7 +382,7 @@ public class ModelImpl implements Model {
                 new Color(r1, g1, b1), new Color(r2, g2, b2)));
       }
 
-      if (x1 == x2 && y1 == y2 && r1 == r2 && g1 == g2 && b1 == b2 && w1 == w2 && h1 == h2){
+      if (x1 == x2 && y1 == y2 && r1 == r2 && g1 == g2 && b1 == b2 && w1 == w2 && h1 == h2) {
         NameOfShape type = model.getShape(name).getType();
         model.addAnimation(name, new Move(t1, t2, new Point(x1, y1), new Point(x2, y2), type));
       }

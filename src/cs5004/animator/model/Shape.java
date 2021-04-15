@@ -130,7 +130,6 @@ public interface Shape {
    * Set the end time of a shape.
    *
    * @param endTime the given end time of a shape
-   * @return shape's information in SVG format.
    */
   void setDisappearTime(int endTime);
 

@@ -24,6 +24,14 @@ import cs5004.animator.view.TextBasedViewImpl;
  * This class represents an easy controller of the model.
  */
 public final class EasyAnimator {
+  /**
+   * This is the main method which is the entry point for our program.
+   *
+   * @param args takes in string arguments into the main
+   * @throws FileNotFoundException is thrown if the program can not find the files specified in the
+   *                               arguments
+   * @throws InterruptedException if the program is interrupted
+   */
   public static void main(String[] args) throws FileNotFoundException, InterruptedException {
     String eachInput;
     String inFile = "";

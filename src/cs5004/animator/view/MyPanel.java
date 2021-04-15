@@ -52,7 +52,7 @@ class MyPanel extends JPanel implements Scrollable {
    * @param updatedShapeList the given shape list
    */
   public void updateShapeList( List<Shape> updatedShapeList) {
-     shapeList = updatedShapeList;
+    shapeList = updatedShapeList;
   }
 
   /**

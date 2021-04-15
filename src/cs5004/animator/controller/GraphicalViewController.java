@@ -19,9 +19,7 @@ public class GraphicalViewController implements AnimationController {
   private Model model;
   private GraphicalView view;
   private int tempo;
-  private Timer timer;
   private long endTime;
-  private long startTime = 0;
   private int tick = 0;
   ActionListener a;
 
@@ -40,7 +38,7 @@ public class GraphicalViewController implements AnimationController {
 
   @Override
   public void start() throws InterruptedException {
-    startTime = System.currentTimeMillis();
+    long startTime = System.currentTimeMillis();
 
     Map<String, Shape> shapeMap = model.getMapOfShapes();
     for (String key : shapeMap.keySet()) {
@@ -55,7 +53,7 @@ public class GraphicalViewController implements AnimationController {
         tick += 1;
       }
     };
-    timer = new Timer((1000 / tempo), a);
+    Timer timer = new Timer((1000 / tempo), a);
     timer.start();
 
 

@@ -107,8 +107,7 @@ public interface Model {
    * @param x the x position
    * @param y the y position
    * @param width the canvas width
-   * @param width the canvas height
-   * @return the hashmap of shapes
+   * @param height the canvas height
    */
   void setCanvas(int x, int y, int width, int height);
 

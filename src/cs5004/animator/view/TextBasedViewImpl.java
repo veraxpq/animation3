@@ -5,24 +5,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
-import cs5004.animator.model.Animation;
+
 import cs5004.animator.model.Model;
-import cs5004.animator.model.ModelImpl;
 import cs5004.animator.model.Shape;
-import cs5004.animator.util.AnimationBuilder;
-import cs5004.animator.util.AnimationReader;
+
 
 /**
  * This class represents the implementation of the TextBasedView class.
  */
 public class TextBasedViewImpl implements TextBasedView {
-  private double speed;
   private final Model model;
 
   /**
@@ -36,7 +29,6 @@ public class TextBasedViewImpl implements TextBasedView {
       throw new IllegalArgumentException("Invalid file name");
     }
     this.model = model;
-    this.speed = speed;
   }
 
   /**
@@ -66,6 +58,16 @@ public class TextBasedViewImpl implements TextBasedView {
   }
 
   /**
+   * Displays the shape list into the current view.
+   *
+   * @param shapeList the given shape list
+   */
+  @Override
+  public void currentView(List<Shape> shapeList) {
+    return;
+  }
+
+  /**
    * Get the description of the object.
    *
    * @return the description of the object
@@ -76,15 +78,7 @@ public class TextBasedViewImpl implements TextBasedView {
     return model.toString();
   }
 
-  /**
-   * Displays the shape list into the current view.
-   *
-   * @param shapeList the given shape list
-   */
-  @Override
-  public void currentView(List<Shape> shapeList) {
-    return;
-  }
+
 
 
 

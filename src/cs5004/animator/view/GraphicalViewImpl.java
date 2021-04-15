@@ -1,13 +1,14 @@
 package cs5004.animator.view;
 
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import javax.swing.JScrollBar;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.List;
 
-import javax.swing.*;
 
+import javax.swing.JFrame;
 import cs5004.animator.model.Shape;
 
 
@@ -21,8 +22,6 @@ import cs5004.animator.model.Shape;
 public class GraphicalViewImpl extends JFrame implements GraphicalView {
 
   private MyPanel panel;
-  private int panelWidth;
-  private int panelHeight;
 
   /**
    * To construct a GraphicalViewImpl object in order to display animations. The various attributes
@@ -37,8 +36,6 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
    */
   public GraphicalViewImpl(int x, int y, int canvasWidth, int canvasHeight, List<Shape> shapeList) {
     super("Animation Viewer");
-    this.panelWidth = canvasWidth;
-    this.panelHeight = canvasHeight;
     BorderLayout borderLayout = new BorderLayout();
     setLayout(borderLayout);
 
@@ -48,7 +45,7 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     // set the panel size
-    this.panel = new MyPanel(x, y, this.panelWidth, this.panelHeight, null);
+    this.panel = new MyPanel(x, y, canvasWidth, canvasHeight, null);
     this.getContentPane().add(this.panel, BorderLayout.CENTER);
     // add the scroll bar
     JScrollBar jScrollBarWidth = new JScrollBar(JScrollBar.HORIZONTAL, 0, 100,
@@ -62,7 +59,7 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
      * in order to set up the vertical scroll bar.
      *
      */
-    class listenerHeight implements AdjustmentListener {
+    class ListenerHeight implements AdjustmentListener {
 
       @Override
       public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -77,7 +74,7 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
      * in order to set up the horizontal scroll bar.
      *
      */
-    class listenerWidth implements AdjustmentListener {
+    class ListenerWidth implements AdjustmentListener {
 
       @Override
       public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -86,8 +83,8 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
 
     }
 
-    jScrollBarHeight.addAdjustmentListener(new listenerHeight());
-    jScrollBarWidth.addAdjustmentListener(new listenerWidth());
+    jScrollBarHeight.addAdjustmentListener(new ListenerHeight());
+    jScrollBarWidth.addAdjustmentListener(new ListenerWidth());
     this.getContentPane().add(jScrollBarHeight, BorderLayout.LINE_END);
     this.getContentPane().add(jScrollBarWidth, BorderLayout.PAGE_END);
 

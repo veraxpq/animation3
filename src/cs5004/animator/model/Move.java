@@ -85,7 +85,7 @@ public class Move extends AbstractAnimation {
             + this.endPoint.getX() + "\" fill=\"freeze\" />\n";
 
     String str3 = " <animate attributeType=\"xml\" begin=\"" + begin + "ms\" dur=\""
-            + duration+ "ms\" attributeName=\"";
+            + duration + "ms\" attributeName=\"";
 
     String str4 = "\" " + "from=\"" + this.startPoint.getY() + "\" to=\""
             + this.endPoint.getY() + "\" fill=\"freeze\" />\n";

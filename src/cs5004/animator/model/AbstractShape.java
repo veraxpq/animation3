@@ -158,7 +158,6 @@ public abstract class AbstractShape implements Shape {
    * Set the end time of a shape.
    *
    * @param endTime the given end time of a shape
-   * @return shape's information in SVG format.
    */
   @Override
   public void setDisappearTime(int endTime) {
@@ -166,7 +165,8 @@ public abstract class AbstractShape implements Shape {
   }
 
   /**
-   * A private helper method to set the visibility of a shape according to its appear/disappear time.
+   * A private helper method to set the visibility of a shape
+   * according to its appear/disappear time.
    *
    * @param tempo the given speed
    * @return shape's visibility information in SVG format.

@@ -4,12 +4,15 @@ import org.junit.Test;
 import cs5004.animator.model.Model;
 import cs5004.animator.model.ModelImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+
+/**
+ * This class tests the methods in the AnimationBuilder class.
+ */
 public class AnimationBuilderTest {
   private ModelImpl.Builder b1;
   private Model m1;
-  private ModelImpl.Builder b2;
   private Model m2;
 
   // Sets up animation builder prior to each test
@@ -23,7 +26,7 @@ public class AnimationBuilderTest {
             250, 60, 255);
     m1 = b1.build();
 
-    b2 = new ModelImpl.Builder();
+    ModelImpl.Builder b2 = new ModelImpl.Builder();
     b2.setBounds(100, 60, 100, 80);
     b2.declareShape("c1", "ellipse");
     b2.addMotion("c1", 0, 0, 0, 10, 10, 0, 0,

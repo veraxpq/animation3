@@ -33,35 +33,33 @@ public class SVGViewImpl extends TextBasedViewImpl {
    */
   @Override
   public String getDescription() {
-  Map<String, Shape> mapOfShapes = model.getMapOfShapes();
-  Map<String, List<Animation>> mapOfAnimations = model.getMapOfAnimations();
+    Map<String, Shape> mapOfShapes = model.getMapOfShapes();
+    Map<String, List<Animation>> mapOfAnimations = model.getMapOfAnimations();
 
     // Setting width and height of the canvas
     int canvasWidth = model.getCanvasX() + model.getCanvasWidth();
     int canvasHeight = model.getCanvasY() + model.getCanvasHeight();
 
     String str = "<svg width=\"" + model.getCanvasWidth() + "\" height=\""
-            + model.getCanvasHeight()+ "\" viewBox=\"" + model.getCanvasX() + " "
+            + model.getCanvasHeight() + "\" viewBox=\"" + model.getCanvasX() + " "
             + model.getCanvasY() + " " + canvasWidth + " " + canvasHeight
             + "\" version=\"1.1\"\n"
             + "xmlns=\"http://www.w3.org/2000/svg\">\n";
 
-
-  for (String key : mapOfShapes.keySet()) {
-    Shape currentShape = mapOfShapes.get(key);
-    str += currentShape.getSVGOfShape(speed);
-    List<Animation> animationList = mapOfAnimations.get(key);
-    for (Animation animation : animationList) {
-      str += animation.getSVGOfAnimation(speed);
+    for (String key : mapOfShapes.keySet()) {
+      Shape currentShape = mapOfShapes.get(key);
+      str += currentShape.getSVGOfShape(speed);
+      List<Animation> animationList = mapOfAnimations.get(key);
+      for (Animation animation : animationList) {
+        str += animation.getSVGOfAnimation(speed);
+      }
+      str += currentShape.getSVGOfEndTag() + "\n";
     }
-    str += currentShape.getSVGOfEndTag() + "\n";
+    str += "</svg>";
+
+    return str;
+
   }
-  str += "</svg>";
-
-  return str;
-  }
-
-
 
 }
 
