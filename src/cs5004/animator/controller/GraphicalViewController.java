@@ -38,8 +38,6 @@ public class GraphicalViewController implements AnimationController {
 
   @Override
   public void start() throws InterruptedException {
-    //long startTime = System.currentTimeMillis();
-
     Map<String, Shape> shapeMap = model.getMapOfShapes();
     for (String key : shapeMap.keySet()) {
       if (shapeMap.get(key).getDisappearTime() > endTime) {

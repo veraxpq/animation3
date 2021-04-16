@@ -114,7 +114,7 @@ public final class EasyAnimator {
       case "visual":
         GraphicalView graphicalView = new GraphicalViewImpl(model.getCanvasX(),
                 model.getCanvasY(), model.getCanvasWidth(),
-                model.getCanvasHeight(), model.getShapeAtTick(speed));
+                model.getCanvasHeight());
 
         controller = new GraphicalViewController(model, graphicalView, speed);
         controller.start();

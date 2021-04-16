@@ -32,9 +32,8 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
    * @param y            the current model used to represent the animation
    * @param canvasWidth  the width of canvas
    * @param canvasHeight the height of canvas
-   * @param shapeList    the list of shapes from model at a certain tick
    */
-  public GraphicalViewImpl(int x, int y, int canvasWidth, int canvasHeight, List<Shape> shapeList) {
+  public GraphicalViewImpl(int x, int y, int canvasWidth, int canvasHeight) {
     super("Animation Viewer");
     BorderLayout borderLayout = new BorderLayout();
     setLayout(borderLayout);
@@ -121,7 +120,7 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
   /**
    * This is a private helper function to set off the panel's width.
    *
-   * @param x the given value to set off from canvvas height
+   * @param x the given value to set off from canvas height
    */
   void setOffX(int x) {
     this.panel.setOffsetX(x);
