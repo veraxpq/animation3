@@ -86,4 +86,6 @@ public abstract class AbstractAnimation implements Animation {
     return a * (t2 - t) / (t2 - t1) + b * (t - t1) / (t2 - t1);
   }
 
+
+
 }

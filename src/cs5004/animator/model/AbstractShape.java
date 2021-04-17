@@ -182,7 +182,8 @@ public abstract class AbstractShape implements Shape {
             + "<animate attributeType=\"xml\" attributeName=\"visibility\" "
             + "to=\"hidden\" begin=\""
             + end + "ms\" fill=\"freeze\" />";
-
   }
 
+  @Override
+  public abstract String getLoopSVGOfShape(int endTime);
 }

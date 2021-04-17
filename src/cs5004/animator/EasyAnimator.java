@@ -9,6 +9,7 @@ import java.io.PrintStream;
 
 import cs5004.animator.controller.AnimationController;
 import cs5004.animator.controller.GraphicalViewController;
+import cs5004.animator.controller.PlaybackViewController;
 import cs5004.animator.model.Model;
 import cs5004.animator.model.ModelImpl;
 import cs5004.animator.util.AnimationBuilder;
@@ -16,6 +17,7 @@ import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.Utils;
 import cs5004.animator.view.GraphicalView;
 import cs5004.animator.view.GraphicalViewImpl;
+import cs5004.animator.view.PlaybackViewImpl;
 import cs5004.animator.view.SVGViewImpl;
 import cs5004.animator.view.TextBasedView;
 import cs5004.animator.view.TextBasedViewImpl;
@@ -52,7 +54,7 @@ public final class EasyAnimator {
           // The options for the view name are "text", "visual" and "svg".
           viewType = args[i + 1];
           if (!((viewType.equals("text") || viewType.equals("visual")
-                  || viewType.equals("svg")))) {
+                  || viewType.equals("svg") || viewType.equals("playback")))) {
             Utils.showErrorMessage();
             return;
           }
@@ -114,9 +116,16 @@ public final class EasyAnimator {
       case "visual":
         GraphicalView graphicalView = new GraphicalViewImpl(model.getCanvasX(),
                 model.getCanvasY(), model.getCanvasWidth(),
-                model.getCanvasHeight(), model.getShapeAtTick(speed));
+                model.getCanvasHeight());
 
         controller = new GraphicalViewController(model, graphicalView, speed);
+        controller.start();
+        break;
+      case "playback":
+        PlaybackViewImpl playbackViewImpl = new PlaybackViewImpl(model.getCanvasX(),
+                model.getCanvasY(), model.getCanvasWidth(),
+                model.getCanvasHeight(), model.getShapeAtTick(speed));
+        controller = new PlaybackViewController(model, playbackViewImpl, speed);
         controller.start();
         break;
       default:

@@ -95,6 +95,32 @@ public class ChangeColor extends AbstractAnimation {
   }
 
 
+  @Override
+  public String getSVGOfLoop(double speed) {
+    String str = "";
+    double begin = (this.getStartTime() / speed) * 1000;
+    double end = (this.getEndTime() / speed) * 1000;
+    double duration = end - begin;
+
+//    String str0 = " <animate id=\"base\" begin=\"0;base.end\" dur=\"" + (duration + 4000)
+//            + "ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>";
+//    str += str0;
+
+    str += " <animate attributeType=\"CSS\" begin=\"base.begin+" + begin + "ms\" dur=\""
+            + duration + "ms\" attributeName=\"fill\" from=\"rgb"
+            + "(" + newR + "," + newG + "," + newB + ")" + "\" to=\"rgb"
+            + "(" + oldR + "," + oldG + "," + oldB + ")" + "\" fill=\"freeze\" />\n";
+
+    // at the end, restore all changed attributes with an instant animation of 1ms duration
+    str += " <animate attributeType=\"CSS\" begin=\"base.end\" dur=\"1ms\""
+            + " attributeName=\"fill\" from=\"rgb"
+            + "(" + newR + "," + newG + "," + newB + ")" + "\" to=\"rgb"
+            + "(" + oldR + "," + oldG + "," + oldB + ")" + "\" fill=\"freeze\" />\n";
+
+    return str;
+  }
+
+
 
 
 }

@@ -316,7 +316,6 @@ public class ModelImpl implements Model {
     return mapOfShapes.values().stream().collect(Collectors.toList());
   }
 
-
   /**
    * This class represents the implementation of the AnimationBuilder interface. This class is used
    * with AnimationReader in order to correctly populate the contents of a text file into an

@@ -11,9 +11,6 @@ public class Rectangle extends AbstractShape {
   private double width;
   private double height;
 
-
-
-
   /**
    * Construct the Rectangle object with the given position, color, type, name, appear time and
    * disappear time.
@@ -143,20 +140,24 @@ public class Rectangle extends AbstractShape {
 
   @Override
   public String getSVGOfShape(double tempo) {
-
     return "<rect id=\"" + this.getName() + "\" x=\"" + this.getPosition().getX() + "\" y=\""
             + this.getPosition().getY() + "\" width=\"" + this.getWidth() + "\" height=\""
             + this.getHeight() + "\" fill=\"rgb" + "(" + color.getRed() + ","
             + color.getGreen() + "," + color.getBlue() + ")"
             + "\" visibility=\"hidden\">\n"
             + getVisibleSVG(tempo);
-
   }
-
 
   @Override
   public String getSVGOfEndTag() {
     return "</rect>";
   }
 
+  @Override
+  public String getLoopSVGOfShape(int endTime) {
+    return "<rect>\n"
+            + "<animate id=\"base\" begin=\"0;base.end\" dur=\""
+            + endTime *1000 + ".00ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
+            + "</rect>\n";
+  }
 }

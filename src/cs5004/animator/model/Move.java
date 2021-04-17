@@ -102,4 +102,52 @@ public class Move extends AbstractAnimation {
   }
 
 
+  @Override
+  public String getSVGOfLoop(double speed) {
+    String str = "";
+    double begin = (this.getStartTime() / speed) * 1000;
+    double end = (this.getEndTime() / speed) * 1000;
+    double dur = end - begin;
+
+//    String str0 = " <animate id=\"base\" begin=\"0;base.end\" dur=\"" + (dur + 4000)
+//            + "ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>";
+//    str += str0;
+
+    // svg format for move animation
+    String str1 = " <animate attributeType=\"xml\" begin=\"base.begin+" + begin + "ms\" dur=\""
+            + dur + "ms\" attributeName=\"";
+
+    String str2 = "\" " + "from=\"" + this.startPoint.getX() + "\" to=\""
+            + this.endPoint.getX() + "\" fill=\"freeze\" />\n";
+
+    String str3 = " <animate attributeType=\"xml\" begin=\"base.begin+" + begin + "ms\" dur=\""
+            + dur + "ms\" attributeName=\"";
+
+    String str4 = "\" " + "from=\"" + this.startPoint.getY() + "\" to=\""
+            + this.endPoint.getY() + "\" fill=\"freeze\" />\n";
+
+    // svg format for looping back: from endPoint to startPoint
+    String str5 = " <animate attributeType=\"xml\" begin=\"base.end\" dur=\"1ms\" "
+            + "attributeName=\"";
+
+    String str6 = "\" " + "from=\"" + this.endPoint.getX() + "\" to=\""
+            + this.startPoint.getX() + "\" fill=\"freeze\" />\n";
+
+    String str7 = " <animate attributeType=\"xml\" begin=\"base.end\" dur=\"1ms\" "
+            + "attributeName=\"";
+
+    String str8 = "\" " + "from=\"" + this.endPoint.getY() + "\" to=\""
+            + this.startPoint.getY() + "\" fill=\"freeze\" />\n";
+
+    if (type == NameOfShape.R) {
+      str += str1 + "x" + str2 + str3 + "y" + str4 + str5 + "x" + str6 + str7 + "y" + str8;
+    }
+    else if (type == NameOfShape.C) {
+      str += str1 + "cx" + str2 + str3 + "cy" + str4 + str5 + "cx" + str6 + str7 + "cy" + str8;
+    }
+
+    return str;
+  }
+
+
 }

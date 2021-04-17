@@ -1,39 +1,26 @@
 package cs5004.animator.view;
 
-
-import java.awt.BorderLayout;
-import javax.swing.JScrollBar;
+import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.List;
 
+import javax.swing.*;
 
-import javax.swing.JFrame;
 import cs5004.animator.model.Shape;
 
-
-/**
- * This class represents a visual view of our EasyAnimator. This class extends JFrame in order to
- * display each frame of the animation properly as the MyPanel refreshes. This class is able to set
- * the frame's title, size. Also, this class is able to set its panel's size, and scroll bars. This
- * class contains methods in order to make the animations visible and refresh the animation for each
- * tick in a given animation.
- */
-public class GraphicalViewImpl extends JFrame implements GraphicalView {
-
+public class PlaybackViewImpl extends JFrame implements View {
+  private JButton start;
+  private JButton pause;
+  private JButton resume;
+  private JButton restart;
+  private JButton increaseSpeed;
+  private JButton decreaseSpeed;
   private MyPanel panel;
+  private JToggleButton loopButton;
 
-  /**
-   * To construct a GraphicalViewImpl object in order to display animations. The various attributes
-   * of the frame are set in this method, and an instance of MyPanel is created to add to the frame.
-   * Additionally, a scroll bar is implemented in the panel.
-   *
-   * @param x            the ticks per second the animation is set to run at
-   * @param y            the current model used to represent the animation
-   * @param canvasWidth  the width of canvas
-   * @param canvasHeight the height of canvas
-   */
-  public GraphicalViewImpl(int x, int y, int canvasWidth, int canvasHeight) {
+  public PlaybackViewImpl(int x, int y, int canvasWidth, int canvasHeight, List<Shape> shapeList) {
     super("Animation Viewer");
     BorderLayout borderLayout = new BorderLayout();
     setLayout(borderLayout);
@@ -42,7 +29,6 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
     setSize(canvasWidth + 100, canvasHeight + 200);
     setLocation(0, 0);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     // set the panel size
     this.panel = new MyPanel(x, y, canvasWidth, canvasHeight, null);
     this.getContentPane().add(this.panel, BorderLayout.CENTER);
@@ -52,6 +38,7 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
     JScrollBar jScrollBarHeight = new JScrollBar(JScrollBar.VERTICAL, 0, 100,
             -1 * canvasHeight, canvasHeight);
 
+    this.setPanelButtons();
 
     /**
      * To construct a listenerHeight object, which implements AdjustmentListener Interface,
@@ -94,33 +81,94 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
 
   }
 
+  private JPanel setPanelButtons() {
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.setLayout(new FlowLayout());
+    buttonPanel.setPreferredSize(new Dimension(300, 50));
+    buttonPanel.setBackground(Color.WHITE);
+
+    // play, pause or restart animation
+    this.start = new JButton("Start");
+    this.pause = new JButton("Pause");
+    this.resume = new JButton("Resume");
+    this.restart = new JButton("Restart");
+    buttonPanel.add(this.start);
+    buttonPanel.add(this.pause);
+    buttonPanel.add(this.resume);
+    buttonPanel.add(this.restart);
+
+    // increase or decrease animation speed
+    this.increaseSpeed = new JButton("Increase Speed");
+    this.decreaseSpeed = new JButton("Decrease Speed");
+    buttonPanel.add(this.increaseSpeed);
+    buttonPanel.add(this.decreaseSpeed);
+
+    // loop animation
+    this.loopButton = new JCheckBox("Loop");
+    buttonPanel.add(this.loopButton);
+    this.getContentPane().add(buttonPanel, BorderLayout.NORTH);
+
+    return buttonPanel;
+  }
 
   /**
-   * This method displays the given shape list in the panel.
+   * Give the view an actionListener for the buttons in the view.
    *
-   * @param shapeList the given shape list.
+   * @param e the event for the button
+   * @throws UnsupportedOperationException if the view does not support this functionality
    */
+
+  public void setStart(ActionListener e) {
+    this.start.addActionListener(e);
+  }
+
+  public void setResume(ActionListener e) {
+    this.resume.addActionListener(e);
+  }
+
+  public void setRestart(ActionListener e) {
+    this.restart.addActionListener(e);
+  }
+
+  public void setPause(ActionListener e) {
+    this.pause.addActionListener(e);
+  }
+
+  public void setIncreaseSpeed(ActionListener e) {
+    this.increaseSpeed.addActionListener(e);
+  }
+
+  public void setDecreaseSpeed(ActionListener e) {
+    this.decreaseSpeed.addActionListener(e);
+  }
+
+  public void setLoopButton(ActionListener e) {
+    this.loopButton.addActionListener(e);
+  }
+
+
+
+
+
+
+
   @Override
   public void currentView(List<Shape> shapeList) {
     panel.updateShapeList(shapeList);
     this.repaint();
   }
 
-  /**
-   * Get the formatted string of the view.
-   *
-   * @return the formatted string of the view.
-   */
   @Override
   public String getDescription() {
     return null;
   }
 
 
+
   /**
    * This is a private helper function to set off the panel's width.
    *
-   * @param x the given value to set off from canvvas height
+   * @param x the given value to set off from canvas height
    */
   void setOffX(int x) {
     this.panel.setOffsetX(x);
@@ -135,5 +183,4 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
   void setOffY(int y) {
     this.panel.setOffsetY(y);
   }
-
 }

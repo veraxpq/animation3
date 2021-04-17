@@ -146,5 +146,4 @@ public interface Model {
    */
   List<Shape> getListOfShapes();
 
-
 }

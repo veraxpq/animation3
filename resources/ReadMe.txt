@@ -1,60 +1,140 @@
-Submit a text README file explaining your design. Make sure you explain your design changes
-from the previous assignment.
-
-In terms of reading from file, we only use the 1st motion to initialize Shape objects(since all
-attributes are the same) and add the following motion to our model.
-
-Invalid arguments(such as speed is less than or equals 0) will display a error message board.
-
-SVGViewImpl extends TextBasedViewImpl.
-
-SVG: At first, all shapes are hidden, when the current time is equal to the shape's appear time,
-it will be visible, then it will
-be invisible when the current time is equal to the shape's disappear time.
-
-The user can use scroll bars to see different parts when the Animation Viewer is displaying animations.
-
-
-When playing with the JAR file called Animator.jar, just move the Animator.jar from resources file to the project file directory, but
-the user don't need to put the input txt file outside of starterCode file, because we already specify the path(starterCode) for all input txt files
-in our program,
-
-
-HW6:
-The Structure of the project:
+1. The Structure of the project:
 
 ├── src
-│   └── cs5004
-│       └── project
-│           ├── AbstractAnimation.java
-│           ├── AbstractShape.java
-│           ├── Animation.java
-│           ├── Appear.java
-│           ├── ChangeColor.java
-│           ├── Disappear.java
-│           ├── Model.java
-│           ├── ModelImpl.java
-│           ├── Move.java
-│           ├── NameOfShape.java
-│           ├── Oval.java
-│           ├── Rectangle.java
-│           ├── Scale.java
-│           └── Shape.java
+│   ├── cs5004
+│   │   └── animator
+│   │       ├── EasyAnimator.java
+│   │       ├── controller
+│   │       │   ├── AnimationController.java
+│   │       │   └── GraphicalViewController.java
+│   │       ├── model
+│   │       │   ├── AbstractAnimation.java
+│   │       │   ├── AbstractShape.java
+│   │       │   ├── Animation.java
+│   │       │   ├── ChangeColor.java
+│   │       │   ├── Model.java
+│   │       │   ├── ModelImpl.java
+│   │       │   ├── Move.java
+│   │       │   ├── NameOfShape.java
+│   │       │   ├── Oval.java
+│   │       │   ├── Rectangle.java
+│   │       │   ├── Scale.java
+│   │       │   └── Shape.java
+│   │       ├── util
+│   │       │   ├── AnimationBuilder.java
+│   │       │   ├── AnimationReader.java
+│   │       │   └── Utils.java
+│   │       └── view
+│   │           ├── GraphicalView.java
+│   │           ├── GraphicalViewImpl.java
+│   │           ├── MyPanel.java
+│   │           ├── SVGViewImpl.java
+│   │           ├── TextBasedView.java
+│   │           ├── TextBasedViewImpl.java
+│   │           └── View.java
+│   └── starterCode
+│       ├── big-bang-big-crunch.txt
+│       ├── buildings.txt
+│       ├── hanoi.txt
+│       ├── simple-example-with-loopback.svg
+│       ├── simple-example.svg
+│       ├── smalldemo.txt
+│       ├── toh-12.txt
+│       ├── toh-3.txt
+│       ├── toh-5.txt
+│       └── toh-8.txt
 ├── test
-│       ├─ChangeColorTest.class
-│       ├── ModelImplTest.class
-│       ├── MoveTest.class
-│       ├── OvalTest.class
-│       ├── RectangleTest.class
-│       └── ScaleTest.class
+│   ├── AnimationBuilderTest.java
+│   ├── ChangeColorTest.java
+│   ├── ModelImplTest.java
+│   ├── MoveTest.java
+│   ├── OvalTest.java
+│   ├── RectangleTest.java
+│   ├── SVGViewImplTest.java
+│   ├── ScaleTest.java
+│   └── TextBasedViewImplTest.java
 
-In our design, there are three interfaces: Shape, Animation and Model. 
 
-The shape interface includes methods related to Shape objects: getColor() to get the color of the shape; getType() to get the Enum type; getName() to get the name, getPosition() to get the 2D position of the left upper corner of the shape; copy() to get the copied shape; toString() to get the formatted string; createNewShape() to create a new shape with the given parameters. The abstract class  AbstractShape is designed to decrease the repetition of the codes, which implements some common methods of all the shapes, like getColor(), getType() and so on. Currently, there are two concrete classes of AbstractShape class, Rectangle and Oval. Each specific class has its own fields, for example, the Rectangle has its width and height.
 
-The Animation interface includes the methods of animation: play() to get the shape copy at the specific time when applying the animation; getStartTime() to get its starting time; getEndTime() to get its ending time; toString() to get the formatted string of the object. We try to keep Animation and Shape independent, in order to reduce coupling. The AbstractAnimation class has two common fields and implements all the common methods of all the Animation objects. And we have three concrete subclasses, ChangeColor, Move and Scale. ChangeColor class changes the color by keeping returning a new shape copy with new given color within the given time period; Move class moves the given shape copy from the start point to the end point; Scale class zooms in or out the given shape copy from original size to new size.
+2. The changes in our previous model:
 
-Finally, we have the Model interface to apply the animation to the shapes. There are eight public methods in the interface, two addShapes, addAnimation, two removeShapes, getShape, getShapeAtTick and toString. The implementation class of the Model interface is ModelImpl, which has two fields mapOfShapes and mapOfAnimations. The mapOfShapes is a HashMap containing all the shapes added into the ModelImpl object, which can be accessed by calling the name of the shape. The mapOfAnimations contains all the animations in the ModelImpl object, and the key of the map is also the name of the shape. In this way, we could easily access any shape and animation by calling the name of the shape, and the time complexity is O(1). In getShapeAtTick(), we always return a list of immutable shapes at a certain tick, since we always create new shapes (or shape copy) when applying animation to shape. In addAnimation(), a shape's different moves can't be overlapped in time, in this case, we will throw IllegalArgumentException.
+In the last version of our model, when we call the play() method in animation class, if the time is
+earlier than the appear time, we set the return shape to be the shape of the appear time. But later
+we found that the shape should not show up before the appear time, so we return null if the time is
+before the appear time in play() method.
+
+Meanwhile, we add some fields and methods in the model, since we need to display the shapes in a panel.
+We add setCanvas, getCanvasX, getCanvasY, getCanvasWidth, getCanvasHeight methods in model interface. 
+We add canvasPositionX, canvasPositionY, canvasWidth and canvasHeight fields in the modelImpl class.
+
+To generate the svg strings of the view, we add some methods in the concrete
+Shape classes. For example, we add getSVGOfShape and getSVGOfEndTag methods in Rectangle class.
+
+
+
+3. The introduction of the three views of our project:
+
+The root interface of the view is the View interface, which contains currentView and getDescription
+methods. Since there are two different kinds of views, which is text and visual, we create two different
+interfaces to extend View interface. The TextBasedView represents the view displayed in text, and can be 
+divided into two kinds of views: TextView and SVGView. 
+
+TextView:
+In TextView, the shapes and animations are represented by words description. Users can input the command 
+line to choose which input file to read from, and which output file to produce. In terms of reading from file,
+we only use the 1st motion(since all attributes are the same) to initialize Shape objects and add the following 
+motion to our model.
+
+SVGView:
+At first, all shapes are hidden, when the current time is equal to the shape's appear time, they will be 
+visible, then it will be invisible when the current time is equal to the shape's disappear time.
+
+GraphicalView:
+In GraphicalView, the animations are displayed in the canvas. Users can input the command line to choose 
+the speed of the animation, and the input file. Also, users can use scroll bars to see different
+parts when the Animation Viewer is representing the animations.
+
+The implementation of TextBasedView is TextViewImpl, which contains
+currentView method, which reads the file with the given file name, and generates corresponding output file. 
+GetDescription method returns the formatted strings of the model.
+
+The implementation of SVGView is SVGViewImpl, which contains a method getDescription to transform the model's data
+into the svg formatted string. SVGViewImpl extends TextBasedViewImpl.
+
+The implementation of GraphicalView is GraphicalViewImpl, which displays the animations in visual views. The 
+various attributes of the frame are set in this method, and an instance of MyPanel is created to add to the frame. 
+Additionally, scroll bars are implemented in the panel.
+
+
+
+4. The introduction of the controller:
+
+The EasyAnimator class works as a mini controller, which is responsible for handling the time, calling the view and the 
+model, and decides when to display the corresponding view to the users. Specifically, We have a GraphicalViewController which
+has a start method to handle time, model and GraphicalView.
+
+
+
+5. Additional class:
+
+We have a class clawed Utils, which contains a static method that is common to EasyAnimator in order to display the error message 
+on the screen if the command lines are not valid. For example, invalid arguments(such as speed is less than or equals 0) 
+will display an error message board.
+
+
+
+6. Note:
+
+When playing with the JAR file called Animator.jar, just move the Animator.jar from resources file to the project file directory,
+and the user don't need to put the input txt file outside of starterCode file, because we already specify the path(starterCode) for 
+all input txt files in our program.
+
+
+
+
+
+
+
 
 
 

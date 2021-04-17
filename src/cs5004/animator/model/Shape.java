@@ -133,6 +133,5 @@ public interface Shape {
    */
   void setDisappearTime(int endTime);
 
-
-
+  String getLoopSVGOfShape(int endTime);
 }

@@ -112,6 +112,57 @@ public class Scale extends AbstractAnimation {
     return str;
   }
 
+  @Override
+  public String getSVGOfLoop(double speed) {
+    double begin = (this.getStartTime() / speed) * 1000;
+    double end = (this.getEndTime() / speed) * 1000;
+    double dur = end - begin;;
+
+    String str = "";
+
+//    String str0 = " <animate id=\"base\" begin=\"0;base.end\" dur=\"" + (dur+ 4000)
+//            + "ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>";
+//    str += str0;
+
+    // svg format for actual animation
+    String str1 = " <animate attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"base.begin+" + begin + "ms\" dur=\"" + dur + "ms\" attributeName=\"";
+
+    String str2 =  "\" " + "from=\"" + this.oldWidth
+            + "\" to=\"" + this.newWidth + "\" fill=\"freeze\" /> \n";
+
+    String str3 = " <animate attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"base.begin+" + begin + "ms\" dur=\"" + dur + "ms\" attributeName=\"";
+
+    String str4 = "\" " + "from=\"" + this.oldHeight
+            + "\" to=\"" + this.newHeight + "\" fill=\"freeze\" />\n";
+
+    // svg format for looping back
+    String str5 = " <animate attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"base.end\" dur=\"1ms\"" + " attributeName=\"";
+
+    String str6 =  "\" "
+            + "from=\"" + this.newWidth
+            + "\" to=\"" + this.oldWidth + "\" fill=\"freeze\" /> \n";
+
+    String str7 = " <animate attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"base.end\" dur=\"1ms\"" + " attributeName=\"";
+
+    String str8 = "\" " + "from=\"" + this.newHeight
+            + "\" to=\"" + this.oldHeight+ "\" fill=\"freeze\" />\n";
+
+    if (type == NameOfShape.R) {
+      str += str1 + "width" + str2 + str3 + "height" + str4 + str5 + "width" + str6 + str7
+              + "height" + str8;
+    }
+    else if (type == NameOfShape.C) {
+      str += str1 + "rx" + str2 + str3 + "ry" + str4 + str5 + "rx" + str6 + str7 + "ry" + str8;
+    }
+
+    return str;
+  }
+
+
 
 
 }
