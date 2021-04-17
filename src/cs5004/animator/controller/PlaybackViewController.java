@@ -91,8 +91,8 @@ public class PlaybackViewController implements AnimationController {
       List<Shape> curShape = model.getShapeAtTick(tick);
       view.currentView(curShape);
       tick += 1;
-      System.out.println(tick);
-      System.out.println(tick > endTime && isLoop);
+      //System.out.println(tick);
+      //System.out.println(tick > endTime && isLoop);
       if (tick > endTime && isLoop) {
         tick = 0;
         resetModel();
@@ -119,21 +119,26 @@ public class PlaybackViewController implements AnimationController {
     };
     view.setRestart(restart);
 
-    ActionListener increaseSpeed = e -> timer.setDelay(1000 / (tempo + 20));
+    ActionListener increaseSpeed = e -> {
+      tempo += 20;
+      timer.setDelay(1000 / tempo);
+      System.out.println(tempo);
+    };
     view.setIncreaseSpeed(increaseSpeed);
 
     ActionListener decreaseSpeed = e -> {
-      int newSpeed = tempo - 20;
-      if (newSpeed < 0) {
-        newSpeed = 1;
+      tempo -= 20;
+      if (tempo < 0) {
+        tempo = 1;
       }
-      timer.setDelay(1000 / newSpeed);
+      timer.setDelay(1000 / tempo);
+      System.out.println(tempo);
     };
     view.setDecreaseSpeed(decreaseSpeed);
 
     ActionListener loopButton = e -> {
       isLoop = !isLoop;
-      System.out.println(isLoop);
+      //System.out.println(isLoop);
     };
     view.setLoopButton(loopButton);
   }
