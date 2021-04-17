@@ -92,7 +92,7 @@ public final class EasyAnimator {
       }
     }
 
-    inFile = System.getProperty("user.dir") + "/src/starterCode/" + inFile;
+    //inFile = System.getProperty("user.dir") + "/src/starterCode/" + inFile;
     Readable readable = null;
     try {
       readable = new FileReader(inFile);

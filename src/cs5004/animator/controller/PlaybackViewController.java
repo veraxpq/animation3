@@ -53,6 +53,7 @@ public class PlaybackViewController implements AnimationController {
       System.out.println(tick);
       System.out.println(tick > endTime && isLoop);
 //      if (tick >= endTime && isLoop) {
+      // delete?
       if (tick > endTime) {
         tick = 0;
       }

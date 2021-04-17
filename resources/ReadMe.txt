@@ -122,12 +122,13 @@ on the screen if the command lines are not valid. For example, invalid arguments
 will display an error message board.
 
 
-
 6. Note:
 
-When playing with the JAR file called Animator.jar, just move the Animator.jar from resources file to the project file directory,
-and the user don't need to put the input txt file outside of starterCode file, because we already specify the path(starterCode) for 
-all input txt files in our program.
+In our SVGViewImplTest and TextBasedViewImplTest, we need to cover the tests for invalid command-line arguments, so it will display
+some error message panels before our tests are passed.
+
+
+
 
 
 

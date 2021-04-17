@@ -32,9 +32,13 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
    * @param y            the current model used to represent the animation
    * @param canvasWidth  the width of canvas
    * @param canvasHeight the height of canvas
+   * @throws IllegalArgumentException when the width or height is negative
    */
   public GraphicalViewImpl(int x, int y, int canvasWidth, int canvasHeight) {
     super("Animation Viewer");
+    if (canvasWidth < 0 || canvasHeight < 0) {
+      throw new IllegalArgumentException("the input width and height cannot be negative");
+    }
     BorderLayout borderLayout = new BorderLayout();
     setLayout(borderLayout);
 

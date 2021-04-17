@@ -12,6 +12,7 @@ public class Utils {
   /**
    * Display the error message on the screen if the command lines are not valid.
    *
+   * @throws IllegalArgumentException when the command-line arguments are not valid
    **/
   public static void showErrorMessage() {
     JFrame frame = new JFrame();
@@ -19,6 +20,8 @@ public class Utils {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     JOptionPane.showMessageDialog(frame, "the command-line arguments are not valid",
             "Error Message", JOptionPane.ERROR_MESSAGE);
+    throw new IllegalArgumentException("the command-line arguments are not valid\",\n" +
+            "            \"Error Message");
   }
 
 }
