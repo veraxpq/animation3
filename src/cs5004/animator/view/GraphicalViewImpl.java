@@ -120,7 +120,7 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
   /**
    * This is a private helper function to set off the panel's width.
    *
-   * @param x the given value to set off from canvvas height
+   * @param x the given value to set off from canvas height
    */
   void setOffX(int x) {
     this.panel.setOffsetX(x);
