@@ -16,8 +16,6 @@ import cs5004.animator.view.PlaybackViewImpl;
 
 public class PlaybackViewController implements AnimationController {
   protected int tick = 0;
-  //  private int[] listOfSpeeds = {1, 10, 100, 500, 1000, 10000};
-//  private int indexCurrentSpeed = 3;
   protected boolean isLoop = false;
   ActionListener a;
   private Model model;
@@ -50,13 +48,11 @@ public class PlaybackViewController implements AnimationController {
       List<Shape> curShape = model.getShapeAtTick(tick);
       view.currentView(curShape);
       tick += 1;
-      System.out.println(tick);
-      System.out.println(tick > endTime && isLoop);
 //      if (tick >= endTime && isLoop) {
       // delete?
-      if (tick > endTime) {
-        tick = 0;
-      }
+//      if (tick > endTime) {
+//        tick = 0;
+//      }
     };
     timer = new Timer((1000 / tempo), a);
 
@@ -91,8 +87,6 @@ public class PlaybackViewController implements AnimationController {
       List<Shape> curShape = model.getShapeAtTick(tick);
       view.currentView(curShape);
       tick += 1;
-      //System.out.println(tick);
-      //System.out.println(tick > endTime && isLoop);
       if (tick > endTime && isLoop) {
         tick = 0;
         resetModel();
@@ -122,7 +116,6 @@ public class PlaybackViewController implements AnimationController {
     ActionListener increaseSpeed = e -> {
       tempo += 20;
       timer.setDelay(1000 / tempo);
-      System.out.println(tempo);
     };
     view.setIncreaseSpeed(increaseSpeed);
 
@@ -132,13 +125,11 @@ public class PlaybackViewController implements AnimationController {
         tempo = 1;
       }
       timer.setDelay(1000 / tempo);
-      System.out.println(tempo);
     };
     view.setDecreaseSpeed(decreaseSpeed);
 
     ActionListener loopButton = e -> {
       isLoop = !isLoop;
-      //System.out.println(isLoop);
     };
     view.setLoopButton(loopButton);
   }

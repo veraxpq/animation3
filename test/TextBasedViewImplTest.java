@@ -26,7 +26,6 @@ public class TextBasedViewImplTest {
   @Before
   public void setUp() throws FileNotFoundException {
     String filename1 = "toh-3.txt";
-    //String inFile = System.getProperty("user.dir") + "/src/starterCode/" + filename1;
     Readable readable = new FileReader(filename1);
     AnimationBuilder<Model> builder = new ModelImpl.Builder();
     Model model = AnimationReader.parseFile(readable, builder);

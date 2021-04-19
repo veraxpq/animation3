@@ -1,12 +1,22 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JToggleButton;
+import javax.swing.JScrollBar;
+import javax.swing.JPanel;
+
 
 import cs5004.animator.model.Shape;
 
@@ -20,8 +30,11 @@ public class PlaybackViewImpl extends JFrame implements View {
   private MyPanel panel;
   private JToggleButton loopButton;
 
-  public PlaybackViewImpl(int x, int y, int canvasWidth, int canvasHeight, List<Shape> shapeList) {
+  public PlaybackViewImpl(int x, int y, int canvasWidth, int canvasHeight) {
     super("Animation Viewer");
+    if (canvasWidth < 0 || canvasHeight < 0) {
+      throw new IllegalArgumentException("the input width and height cannot be negative");
+    }
     BorderLayout borderLayout = new BorderLayout();
     setLayout(borderLayout);
 
@@ -163,6 +176,10 @@ public class PlaybackViewImpl extends JFrame implements View {
     return null;
   }
 
+  @Override
+  public String getViewType() {
+    return "playback";
+  }
 
 
   /**

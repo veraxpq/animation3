@@ -120,6 +120,11 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
     return null;
   }
 
+  @Override
+  public String getViewType() {
+    return "visual";
+  }
+
 
   /**
    * This is a private helper function to set off the panel's width.
