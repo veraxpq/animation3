@@ -72,7 +72,6 @@ public final class EasyAnimator {
         default:
           Utils.showErrorMessage();
           return;
-
       }
     }
 
