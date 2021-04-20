@@ -23,4 +23,12 @@ public interface View {
    */
   String getDescription();
 
+
+  /**
+   * Get a view's type.
+   *
+   * @return type of a given view
+   */
+  String getViewType();
+
 }

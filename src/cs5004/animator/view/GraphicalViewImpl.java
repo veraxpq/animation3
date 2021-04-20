@@ -1,7 +1,8 @@
 package cs5004.animator.view;
 
 
-import java.awt.BorderLayout;
+import java.awt.*;
+
 import javax.swing.JScrollBar;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
@@ -32,6 +33,7 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
    * @param y            the current model used to represent the animation
    * @param canvasWidth  the width of canvas
    * @param canvasHeight the height of canvas
+   * @throws IllegalArgumentException when the width or height is negative
    */
   public GraphicalViewImpl(int x, int y, int canvasWidth, int canvasHeight) {
     super("Animation Viewer");
@@ -119,6 +121,11 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
     return null;
   }
 
+  @Override
+  public String getViewType() {
+    return "visual";
+  }
+
 
   /**
    * This is a private helper function to set off the panel's width.
@@ -137,6 +144,10 @@ public class GraphicalViewImpl extends JFrame implements GraphicalView {
    */
   void setOffY(int y) {
     this.panel.setOffsetY(y);
+  }
+
+  MyPanel getPanel() {
+    return this.panel;
   }
 
 }

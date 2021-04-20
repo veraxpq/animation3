@@ -16,8 +16,6 @@ import cs5004.animator.view.PlaybackViewImpl;
 
 public class PlaybackViewController implements AnimationController {
   protected int tick = 0;
-  //  private int[] listOfSpeeds = {1, 10, 100, 500, 1000, 10000};
-//  private int indexCurrentSpeed = 3;
   protected boolean isLoop = false;
   ActionListener a;
   private Model model;
@@ -50,12 +48,11 @@ public class PlaybackViewController implements AnimationController {
       List<Shape> curShape = model.getShapeAtTick(tick);
       view.currentView(curShape);
       tick += 1;
-      System.out.println(tick);
-      System.out.println(tick > endTime && isLoop);
 //      if (tick >= endTime && isLoop) {
-      if (tick > endTime) {
-        tick = 0;
-      }
+      // delete?
+//      if (tick > endTime) {
+//        tick = 0;
+//      }
     };
     timer = new Timer((1000 / tempo), a);
 
@@ -90,8 +87,6 @@ public class PlaybackViewController implements AnimationController {
       List<Shape> curShape = model.getShapeAtTick(tick);
       view.currentView(curShape);
       tick += 1;
-      System.out.println(tick);
-      System.out.println(tick > endTime && isLoop);
       if (tick > endTime && isLoop) {
         tick = 0;
         resetModel();
@@ -102,65 +97,39 @@ public class PlaybackViewController implements AnimationController {
   }
 
   private void attachActionListener() {
-    ActionListener start = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        timer.start();
-      }
-    };
+    ActionListener start = e -> timer.start();
     view.setStart(start);
 
-    ActionListener pause = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        timer.stop();
-      }
-    };
+    ActionListener pause = e -> timer.stop();
     view.setPause(pause);
 
-    ActionListener resume = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        timer.start();
-      }
-    };
+    ActionListener resume = e -> timer.start();
     view.setResume(resume);
 
-    ActionListener restart = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        tick = 0;
-        timer.restart();
-      }
+    ActionListener restart = e -> {
+      resetModel();
+      tick = 0;
+      timer.restart();
     };
     view.setRestart(restart);
 
-    ActionListener increaseSpeed = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        timer.setDelay(1000 / (tempo + 20));
-      }
+    ActionListener increaseSpeed = e -> {
+      tempo += 20;
+      timer.setDelay(1000 / tempo);
     };
     view.setIncreaseSpeed(increaseSpeed);
 
-    ActionListener decreaseSpeed = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        int newSpeed = tempo - 20;
-        if (newSpeed < 0) {
-          newSpeed = 1;
-        }
-        timer.setDelay(1000 / newSpeed);
+    ActionListener decreaseSpeed = e -> {
+      tempo -= 20;
+      if (tempo < 0) {
+        tempo = 1;
       }
+      timer.setDelay(1000 / tempo);
     };
     view.setDecreaseSpeed(decreaseSpeed);
 
-    ActionListener loopButton = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        isLoop = !isLoop;
-        System.out.println(isLoop);
-      }
+    ActionListener loopButton = e -> {
+      isLoop = !isLoop;
     };
     view.setLoopButton(loopButton);
   }

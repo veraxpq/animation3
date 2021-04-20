@@ -77,6 +77,12 @@ public class SVGViewImpl extends TextBasedViewImpl {
 
   }
 
+
+  @Override
+  public String getViewType() {
+    return "svg";
+  }
+
 }
 
 

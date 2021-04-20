@@ -78,8 +78,10 @@ public class TextBasedViewImpl implements TextBasedView {
     return model.toString();
   }
 
-
-
+  @Override
+  public String getViewType() {
+    return "text";
+  }
 
 
 }

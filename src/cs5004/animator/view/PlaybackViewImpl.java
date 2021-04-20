@@ -1,16 +1,27 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JToggleButton;
+import javax.swing.JScrollBar;
+import javax.swing.JPanel;
+
 
 import cs5004.animator.model.Shape;
 
-public class PlaybackViewImpl extends JFrame implements View {
+public class PlaybackViewImpl extends GraphicalViewImpl {
+//  public class PlaybackViewImpl extends JFrame implements View {
   private JButton start;
   private JButton pause;
   private JButton resume;
@@ -20,23 +31,28 @@ public class PlaybackViewImpl extends JFrame implements View {
   private MyPanel panel;
   private JToggleButton loopButton;
 
-  public PlaybackViewImpl(int x, int y, int canvasWidth, int canvasHeight, List<Shape> shapeList) {
-    super("Animation Viewer");
-    BorderLayout borderLayout = new BorderLayout();
-    setLayout(borderLayout);
-
-    // set the frame size
-    setSize(canvasWidth + 100, canvasHeight + 200);
-    setLocation(0, 0);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    // set the panel size
-    this.panel = new MyPanel(x, y, canvasWidth, canvasHeight, null);
-    this.getContentPane().add(this.panel, BorderLayout.CENTER);
-    // add the scroll bar
-    JScrollBar jScrollBarWidth = new JScrollBar(JScrollBar.HORIZONTAL, 0, 100,
-            -1 * canvasWidth, canvasWidth);
-    JScrollBar jScrollBarHeight = new JScrollBar(JScrollBar.VERTICAL, 0, 100,
-            -1 * canvasHeight, canvasHeight);
+  public PlaybackViewImpl(int x, int y, int canvasWidth, int canvasHeight) {
+    super(x, y, canvasWidth, canvasHeight);
+//    super("Animation Viewer");
+//    if (canvasWidth < 0 || canvasHeight < 0) {
+//      throw new IllegalArgumentException("the input width and height cannot be negative");
+//    }
+//    BorderLayout borderLayout = new BorderLayout();
+//    setLayout(borderLayout);
+//
+//    // set the frame size
+//    setSize(canvasWidth + 100, canvasHeight + 200);
+//    setLocation(0, 0);
+//    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    // set the panel size
+    this.panel = super.getPanel();
+//    this.panel = new MyPanel(x, y, canvasWidth, canvasHeight, null);
+//    this.getContentPane().add(this.panel, BorderLayout.CENTER);
+//    // add the scroll bar
+//    JScrollBar jScrollBarWidth = new JScrollBar(JScrollBar.HORIZONTAL, 0, 100,
+//            -1 * canvasWidth, canvasWidth);
+//    JScrollBar jScrollBarHeight = new JScrollBar(JScrollBar.VERTICAL, 0, 100,
+//            -1 * canvasHeight, canvasHeight);
 
     this.setPanelButtons();
 
@@ -45,14 +61,14 @@ public class PlaybackViewImpl extends JFrame implements View {
      * in order to set up the vertical scroll bar.
      *
      */
-    class ListenerHeight implements AdjustmentListener {
-
-      @Override
-      public void adjustmentValueChanged(AdjustmentEvent e) {
-        setOffY(e.getValue());
-      }
-
-    }
+//    class ListenerHeight implements AdjustmentListener {
+//
+//      @Override
+//      public void adjustmentValueChanged(AdjustmentEvent e) {
+//        setOffY(e.getValue());
+//      }
+//
+//    }
 
 
     /**
@@ -60,24 +76,24 @@ public class PlaybackViewImpl extends JFrame implements View {
      * in order to set up the horizontal scroll bar.
      *
      */
-    class ListenerWidth implements AdjustmentListener {
+//    class ListenerWidth implements AdjustmentListener {
+//
+//      @Override
+//      public void adjustmentValueChanged(AdjustmentEvent e) {
+//        setOffX(e.getValue());
+//      }
+//
+//    }
 
-      @Override
-      public void adjustmentValueChanged(AdjustmentEvent e) {
-        setOffX(e.getValue());
-      }
+//    jScrollBarHeight.addAdjustmentListener(new ListenerHeight());
+//    jScrollBarWidth.addAdjustmentListener(new ListenerWidth());
+//    this.getContentPane().add(jScrollBarHeight, BorderLayout.LINE_END);
+//    this.getContentPane().add(jScrollBarWidth, BorderLayout.PAGE_END);
 
-    }
-
-    jScrollBarHeight.addAdjustmentListener(new ListenerHeight());
-    jScrollBarWidth.addAdjustmentListener(new ListenerWidth());
-    this.getContentPane().add(jScrollBarHeight, BorderLayout.LINE_END);
-    this.getContentPane().add(jScrollBarWidth, BorderLayout.PAGE_END);
-
-    this.setVisible(true);
-    this.add(this.panel);
-    this.panel.setVisible(true);
-    this.pack();
+//    this.setVisible(true);
+//    this.add(this.panel);
+//    this.panel.setVisible(true);
+//    this.pack();
 
   }
 
@@ -163,6 +179,10 @@ public class PlaybackViewImpl extends JFrame implements View {
     return null;
   }
 
+  @Override
+  public String getViewType() {
+    return "playback";
+  }
 
 
   /**

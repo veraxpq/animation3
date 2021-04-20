@@ -28,80 +28,19 @@ public class SVGViewImplTest {
   @Before
   public void setUp() throws FileNotFoundException {
     String filename1 = "smalldemo.txt";
-    String inFile = System.getProperty("user.dir") + "/src/starterCode/" + filename1;
-    Readable readable = new FileReader(inFile);
+    Readable readable = new FileReader(filename1);
     AnimationBuilder<Model> builder = new ModelImpl.Builder();
     Model model = AnimationReader.parseFile(readable, builder);
     v1 = new SVGViewImpl(model, 1);
 
     String filename2 = "toh-3.txt";
-    String inFile1 = System.getProperty("user.dir") + "/src/starterCode/" + filename2;
-    Readable readable1 = new FileReader(inFile1);
+    Readable readable1 = new FileReader(filename2);
     AnimationBuilder<Model> builder1 = new ModelImpl.Builder();
     Model model1 = AnimationReader.parseFile(readable1, builder1);
     v2 = new SVGViewImpl(model1, 20);
   }
 
-  @Test (expected = FileNotFoundException.class)
-  public void setUpNonFile() throws FileNotFoundException {
-    String filename1 = "nosuchfile.txt";
-    String inFile = System.getProperty("user.dir") + "/src/starterCode/" + filename1;
-    Readable readable = new FileReader(inFile);
-  }
 
-  @Test (expected = IllegalArgumentException.class)
-  public void testIllegalFileArgs() throws IOException, InterruptedException {
-    String str = "-in nosuchfile.txt -view svg -out text-transcript.txt";
-    String[] args = str.split(" ");
-    EasyAnimator.main(args);
-
-    BufferedReader bufferedReader = null;
-    bufferedReader = new BufferedReader(new FileReader("text-transcript.txt"));
-    StringBuilder stringBuilder = new StringBuilder();
-    String line = bufferedReader.readLine();
-
-    while (line != null) {
-      stringBuilder.append(line);
-      stringBuilder.append("\n");
-      line = bufferedReader.readLine();
-    }
-  }
-
-  @Test (expected = IllegalArgumentException.class)
-  public void testIllegalView() throws IOException, InterruptedException {
-    String str = "-in toh-3.txt -view svgs -out text-transcript.txt";
-    String[] args = str.split(" ");
-    EasyAnimator.main(args);
-
-    BufferedReader bufferedReader = null;
-    bufferedReader = new BufferedReader(new FileReader("text-transcript.txt"));
-    StringBuilder stringBuilder = new StringBuilder();
-    String line = bufferedReader.readLine();
-
-    while (line != null) {
-      stringBuilder.append(line);
-      stringBuilder.append("\n");
-      line = bufferedReader.readLine();
-    }
-  }
-
-  @Test (expected = IllegalArgumentException.class)
-  public void testIllegalSpeed() throws IOException, InterruptedException {
-    String str = "-in toh-3.txt -view svg -out text-transcript.txt -speed -2";
-    String[] args = str.split(" ");
-    EasyAnimator.main(args);
-
-    BufferedReader bufferedReader = null;
-    bufferedReader = new BufferedReader(new FileReader("text-transcript.txt"));
-    StringBuilder stringBuilder = new StringBuilder();
-    String line = bufferedReader.readLine();
-
-    while (line != null) {
-      stringBuilder.append(line);
-      stringBuilder.append("\n");
-      line = bufferedReader.readLine();
-    }
-  }
 
   @Test
   public void testGetDescription() {
@@ -383,6 +322,66 @@ public class SVGViewImplTest {
             v2.getDescription());
   }
 
+  @Test (expected = FileNotFoundException.class)
+  public void setUpNonFile() throws FileNotFoundException {
+    String filename1 = "nosuchfile.txt";
+    Readable readable = new FileReader(filename1);
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testIllegalFileArgs() throws IOException, InterruptedException {
+    String str = "-in nosuchfile.txt -view text -out text-transcript.txt";
+    String[] args = str.split(" ");
+    EasyAnimator.main(args);
+
+    BufferedReader bufferedReader = null;
+    bufferedReader = new BufferedReader(new FileReader("text-transcript.txt"));
+    StringBuilder stringBuilder = new StringBuilder();
+    String line = bufferedReader.readLine();
+
+    while (line != null) {
+      stringBuilder.append(line);
+      stringBuilder.append("\n");
+      line = bufferedReader.readLine();
+    }
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testIllegalView() throws IOException, InterruptedException {
+    String str = "-in toh-3.txt -view texts -out text-transcript.txt";
+    String[] args = str.split(" ");
+    EasyAnimator.main(args);
+
+    BufferedReader bufferedReader = null;
+    bufferedReader = new BufferedReader(new FileReader("text-transcript.txt"));
+    StringBuilder stringBuilder = new StringBuilder();
+    String line = bufferedReader.readLine();
+
+    while (line != null) {
+      stringBuilder.append(line);
+      stringBuilder.append("\n");
+      line = bufferedReader.readLine();
+    }
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testIllegalSpeed() throws IOException, InterruptedException {
+    String str = "-in toh-3.txt -view text -out text-transcript.txt -speed -2";
+    String[] args = str.split(" ");
+    EasyAnimator.main(args);
+
+    BufferedReader bufferedReader = null;
+    bufferedReader = new BufferedReader(new FileReader("text-transcript.txt"));
+    StringBuilder stringBuilder = new StringBuilder();
+    String line = bufferedReader.readLine();
+
+    while (line != null) {
+      stringBuilder.append(line);
+      stringBuilder.append("\n");
+      line = bufferedReader.readLine();
+    }
+  }
+
   @Test (expected = IllegalArgumentException.class)
   public void testIllegalSetUp1() {
     View v = new SVGViewImpl(null, 3);
@@ -397,4 +396,7 @@ public class SVGViewImplTest {
   public void testIllegalSetUp3() {
     View v = new SVGViewImpl(null, -2);
   }
+
+
+
 }
