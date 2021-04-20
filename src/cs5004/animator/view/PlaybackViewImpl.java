@@ -41,9 +41,9 @@ public class PlaybackViewImpl extends GraphicalViewImpl {
 //    setLayout(borderLayout);
 //
 //    // set the frame size
-//    setSize(canvasWidth + 100, canvasHeight + 200);
-//    setLocation(0, 0);
-//    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setSize(canvasWidth + 18, canvasHeight + 95);
+    setLocation(0, 0);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //    // set the panel size
     this.panel = super.getPanel();
 //    this.panel = new MyPanel(x, y, canvasWidth, canvasHeight, null);
@@ -185,22 +185,22 @@ public class PlaybackViewImpl extends GraphicalViewImpl {
   }
 
 
-  /**
-   * This is a private helper function to set off the panel's width.
-   *
-   * @param x the given value to set off from canvas height
-   */
-  void setOffX(int x) {
-    this.panel.setOffsetX(x);
-  }
-
-
-  /**
-   * This is a private helper function to set off the panel's height.
-   *
-   * @param y the given value to set off form canvas width
-   */
-  void setOffY(int y) {
-    this.panel.setOffsetY(y);
-  }
+//  /**
+//   * This is a private helper function to set off the panel's width.
+//   *
+//   * @param x the given value to set off from canvas height
+//   */
+//  void setOffX(int x) {
+//    this.panel.setOffsetX(x);
+//  }
+//
+//
+//  /**
+//   * This is a private helper function to set off the panel's height.
+//   *
+//   * @param y the given value to set off form canvas width
+//   */
+//  void setOffY(int y) {
+//    this.panel.setOffsetY(y);
+//  }
 }
