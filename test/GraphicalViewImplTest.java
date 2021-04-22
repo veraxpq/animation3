@@ -23,15 +23,13 @@ public class GraphicalViewImplTest {
   @Before
   public void setUp() throws Exception {
     String filename1 = "smalldemo.txt";
-    String inFile = System.getProperty("user.dir") + "/src/starterCode/" + filename1;
-    Readable readable = new FileReader(inFile);
+    Readable readable = new FileReader(filename1);
     AnimationBuilder<Model> builder = new ModelImpl.Builder();
     Model model = AnimationReader.parseFile(readable, builder);
     v1 = new SVGViewImpl(model, 1);
 
     String filename2 = "toh-3.txt";
-    String inFile1 = System.getProperty("user.dir") + "/src/starterCode/" + filename2;
-    Readable readable1 = new FileReader(inFile1);
+    Readable readable1 = new FileReader(filename2);
     AnimationBuilder<Model> builder1 = new ModelImpl.Builder();
     Model model1 = AnimationReader.parseFile(readable1, builder1);
     v2 = new SVGViewImpl(model1, 20);
@@ -40,8 +38,7 @@ public class GraphicalViewImplTest {
   @Test (expected = FileNotFoundException.class)
   public void setUpNonFile() throws FileNotFoundException {
     String filename1 = "nosuchfile.txt";
-    String inFile = System.getProperty("user.dir") + "/src/starterCode/" + filename1;
-    Readable readable = new FileReader(inFile);
+    Readable readable = new FileReader(filename1);
   }
 
   @Test (expected = IllegalArgumentException.class)
