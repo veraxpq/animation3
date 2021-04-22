@@ -70,6 +70,7 @@ public class AnimationControllerImplTest {
 
   @Test
   public void start() throws InterruptedException, FileNotFoundException {
+    // test start() by using EasyAnimator
     String str = "-in smalldemo.txt -view text -out text-transcript.txt";
     String[] args = str.split(" ");
     EasyAnimator.main(args);
@@ -86,8 +87,7 @@ public class AnimationControllerImplTest {
         line = bufferedReader.readLine();
       }
       assertEquals(v1.getDescription() + "\n", stringBuilder.toString());
-      assertEquals(
-          "Shapes:\n"
+      assertEquals("Shapes:\n"
               + "Name: R\n"
               + "Type: rectangle\n"
               + "Min Corner: (200.0, 200.0), Width: 50.0, Height: 100.0, Color: (1.0, 0.0, 0.0)\n"

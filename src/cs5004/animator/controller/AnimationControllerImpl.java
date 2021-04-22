@@ -139,7 +139,6 @@ public class AnimationControllerImpl implements AnimationController {
   private void copyModel(Model originalModel, Model copiedModel) {
     Map<String, Shape> originalShapeMap = originalModel.getMapOfShapes();
     Map<String, List<Animation>> originalAnimationMap = originalModel.getMapOfAnimations();
-//    copiedModel = new ModelImpl();
     for (String key : originalShapeMap.keySet()) {
       copiedModel.addShape(originalShapeMap.get(key));
     }
@@ -157,17 +156,6 @@ public class AnimationControllerImpl implements AnimationController {
   private void resetModel() {
     model = new ModelImpl();
     copyModel(modelCopy, model);
-//    Map<String, Shape> originalShapeMap = modelCopy.getMapOfShapes();
-//    Map<String, List<Animation>> originalAnimationMap = modelCopy.getMapOfAnimations();
-//    for (String key : originalShapeMap.keySet()) {
-//      model.addShape(originalShapeMap.get(key));
-//    }
-//    for (String key : originalAnimationMap.keySet()) {
-//      List<Animation> animationList = originalAnimationMap.get(key);
-//      for (Animation animation : animationList) {
-//        model.addAnimation(key, animation);
-//      }
-//    }
   }
 
 

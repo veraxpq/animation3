@@ -1,9 +1,8 @@
 package cs5004.animator.view;
 
-
-import java.awt.*;
-
+import java.awt.BorderLayout;
 import javax.swing.JScrollBar;
+
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.List;

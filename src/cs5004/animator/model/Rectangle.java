@@ -153,11 +153,4 @@ public class Rectangle extends AbstractShape {
     return "</rect>";
   }
 
-  @Override
-  public String getLoopSVGOfShape(int endTime) {
-    return "<rect>\n"
-            + "<animate id=\"base\" begin=\"0;base.end\" dur=\""
-            + endTime *1000 + ".00ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
-            + "</rect>\n";
-  }
 }
