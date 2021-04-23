@@ -13,7 +13,6 @@ import cs5004.animator.model.Shape;
 public class SVGViewImpl extends TextBasedViewImpl {
   private final Model model;
   private double speed;
-  private boolean isLoop = true;
 
   /**
    * Constructs the SVGViewImpl object with the given model and speed.
@@ -36,7 +35,6 @@ public class SVGViewImpl extends TextBasedViewImpl {
   public String getDescription() {
     Map<String, Shape> mapOfShapes = model.getMapOfShapes();
     Map<String, List<Animation>> mapOfAnimations = model.getMapOfAnimations();
-    int endTime = 0;
 
     // Setting width and height of the canvas
     int canvasWidth = model.getCanvasX() + model.getCanvasWidth();
@@ -49,32 +47,18 @@ public class SVGViewImpl extends TextBasedViewImpl {
             + "\" version=\"1.1\"\n"
             + "xmlns=\"http://www.w3.org/2000/svg\">\n";
 
-//    boolean flag = true;
-//
-//    for (String key : mapOfAnimations.keySet()) {
-//      List<Animation> animationList = mapOfAnimations.get(key);
-//      for (Animation animation : animationList) {
-//        endTime = Math.max(endTime, animation.getEndTime());
-//      }
-//    }
     for (String key : mapOfShapes.keySet()) {
       Shape currentShape = mapOfShapes.get(key);
-//      if (flag && isLoop) {
-//        str += currentShape.getLoopSVGOfShape(endTime);
-//        flag = false;
-//      }
       str += currentShape.getSVGOfShape(speed);
       List<Animation> animationList = mapOfAnimations.get(key);
       for (Animation animation : animationList) {
         str += animation.getSVGOfAnimation(speed);
-        //str += animation.getSVGOfLoop(speed);
       }
       str += currentShape.getSVGOfEndTag() + "\n";
     }
     str += "</svg>";
 
     return str;
-
   }
 
 

@@ -44,7 +44,6 @@ public interface Animation {
    */
   String getSVGOfAnimation(double speed);
 
-  String getSVGOfLoop(double speed);
 
 
 

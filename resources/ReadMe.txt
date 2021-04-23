@@ -35,6 +35,20 @@ calling the view and the model, and decides when to display the corresponding vi
 Specifically, we have a single controller called AnimationController, which has a start method
 to handle time, model and different type of views.
 
+5. Additional class:
+
+We have a class clawed Utils, which contains a static method that is common to EasyAnimator
+in order to display the corresponding error message on the screen if the command lines are not
+valid. For example, invalid arguments(such as speed is less than or equals 0)
+will display an error message board which says invalid speed.
+
+
+6. Note:
+
+In our SVGViewImplTest, TextBasedViewImplTest and GraphicalViewImplTest, we need to cover the tests
+for invalid command-line arguments, so it will display corresponding error message panels before
+ our tests are passed.
+
 
 
 

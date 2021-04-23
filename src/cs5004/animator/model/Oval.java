@@ -149,11 +149,4 @@ public class Oval extends AbstractShape {
     return "</ellipse>";
   }
 
-  @Override
-  public String getLoopSVGOfShape(int endTime) {
-    return "<ellipse>\n"
-            + "<animate id=\"base\" begin=\"0;base.end\" dur=\""
-            + endTime * 1000 + ".00ms\" attributeName=\"visibility\" from=\"hide\" to=\"hide\"/>\n"
-            + "</ellipse>\n";
-  }
 }

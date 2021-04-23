@@ -184,6 +184,4 @@ public abstract class AbstractShape implements Shape {
             + end + "ms\" fill=\"freeze\" />";
   }
 
-  @Override
-  public abstract String getLoopSVGOfShape(int endTime);
 }
