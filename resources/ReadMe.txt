@@ -5,6 +5,8 @@
 
 
 
+
+
 2. The changes in our previous project:
 
 In this project, we add an interactive view class called PlaybackViewImpl. In order to reduce code
@@ -23,6 +25,10 @@ covers basic tests for our controller.
 In PlaybackViewImpl, we set buttons in the panel so that users can decide when to speed up, slow
 down, pause, resume or loop by clicking at the corresponding button. Additionally, scroll bars
  are implemented in the panel.
+
+ For the decreaseSpeed/increaseSpeed button, every time the user clicks on it, the animation's speed
+ will decrease/increase by 20. The minimum speed will be set to 1 if the speed is less or equal
+ to 0.
 
 The user can click at loop button at anytime to see the looping animations. Meanwhile, other buttons
 can also perform their functionalities correctly when it's looping.
