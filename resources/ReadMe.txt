@@ -1,10 +1,59 @@
 1. The Structure of the project:
 
-
-
-
-
-
+├── resources
+│   ├── Animator.jar
+│   ├── ReadMe.txt
+│   └── buildings.png
+├── simple-example-with-loopback.svg
+├── simple-example.svg
+├── smalldemo.txt
+├── src
+│   ├── META-INF
+│   │   └── MANIFEST.MF
+│   └── cs5004
+│       └── animator
+│           ├── EasyAnimator.java
+│           ├── controller
+│           │   ├── AnimationController.java
+│           │   └── AnimationControllerImpl.java
+│           ├── model
+│           │   ├── AbstractAnimation.java
+│           │   ├── AbstractShape.java
+│           │   ├── Animation.java
+│           │   ├── ChangeColor.java
+│           │   ├── Model.java
+│           │   ├── ModelImpl.java
+│           │   ├── Move.java
+│           │   ├── NameOfShape.java
+│           │   ├── Oval.java
+│           │   ├── Rectangle.java
+│           │   ├── Scale.java
+│           │   └── Shape.java
+│           ├── util
+│           │   ├── AnimationBuilder.java
+│           │   ├── AnimationReader.java
+│           │   └── Utils.java
+│           └── view
+│               ├── GraphicalView.java
+│               ├── GraphicalViewImpl.java
+│               ├── MyPanel.java
+│               ├── PlaybackViewImpl.java
+│               ├── SVGViewImpl.java
+│               ├── TextBasedView.java
+│               ├── TextBasedViewImpl.java
+│               └── View.java
+├── test
+│   ├── AnimationBuilderTest.java
+│   ├── AnimationControllerImplTest.java
+│   ├── ChangeColorTest.java
+│   ├── GraphicalViewImplTest.java
+│   ├── ModelImplTest.java
+│   ├── MoveTest.java
+│   ├── OvalTest.java
+│   ├── RectangleTest.java
+│   ├── SVGViewImplTest.java
+│   ├── ScaleTest.java
+│   └── TextBasedViewImplTest.java
 
 
 2. The changes in our previous project:
@@ -14,6 +63,12 @@ repetition, PlaybackViewImpl extends GraphicalViewImpl class, since we only need
 the panel from GraphicalViewImpl. Also, we only have a single controller called
 AnimationControllerImpl, which can manage different view types and connect view with model.
 In addition, we add a new command-line argument called "playback" for this new view type.
+
+In the last version, our project designed an AnimationController interface, and had an
+GraphicalViewController class to control the GraphicalView. And since the it is easy to control the
+SVGView and TextBasedView, we put the controller into the EasyAnimator class. In this version, we
+put all the controllers into the AnimationControllerImpl class, and play the view separately
+according to the view types.
 
 In terms of test, we add a test class for our controller called AnimationControllerImplTest, which
 covers basic tests for our controller.
