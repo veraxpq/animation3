@@ -17,8 +17,13 @@ import javax.swing.JPanel;
 
 import cs5004.animator.model.Shape;
 
+/**
+ * This class represents an interactive view of our EasyAnimator. This class extends
+ * GraphicalViewImpl in order to reduce code repetition. Also, we set buttons in the panel so that
+ * users can decide when to speed up, slow down, pause, resume or loop by clicking at the
+ * corresponding button.
+ */
 public class PlaybackViewImpl extends GraphicalViewImpl {
-//  public class PlaybackViewImpl extends JFrame implements View {
   private JButton start;
   private JButton pause;
   private JButton resume;
@@ -28,6 +33,18 @@ public class PlaybackViewImpl extends GraphicalViewImpl {
   private MyPanel panel;
   private JToggleButton loopButton;
 
+  /**
+   * To construct a PlaybackViewImpl object in order to display animations. The various attributes
+   * of the frame are set in this method, and an instance of MyPanel is created to add to the frame.
+   * Additionally, a scroll bar is implemented in the panel. Also, we set interactive buttons in
+   * the panel.
+   *
+   * @param x            the ticks per second the animation is set to run at
+   * @param y            the current model used to represent the animation
+   * @param canvasWidth  the width of canvas
+   * @param canvasHeight the height of canvas
+   * @throws IllegalArgumentException when the width or height is negative
+   */
   public PlaybackViewImpl(int x, int y, int canvasWidth, int canvasHeight) {
     super(x, y, canvasWidth, canvasHeight);
     // set the frame size

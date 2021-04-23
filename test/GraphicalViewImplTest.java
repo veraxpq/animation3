@@ -16,6 +16,9 @@ import cs5004.animator.view.View;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class tests the methods in the GraphicalViewImpl class.
+ */
 public class GraphicalViewImplTest {
   View v1;
   View v2;
