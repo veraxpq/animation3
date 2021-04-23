@@ -14,7 +14,6 @@ import cs5004.animator.model.Model;
 import cs5004.animator.model.ModelImpl;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationReader;
-import cs5004.animator.view.SVGViewImpl;
 import cs5004.animator.view.TextBasedViewImpl;
 import cs5004.animator.view.View;
 

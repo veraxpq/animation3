@@ -84,7 +84,7 @@ public final class EasyAnimator {
     AnimationBuilder<Model> builder = new ModelImpl.Builder();
     Model model = AnimationReader.parseFile(readable, builder);
 
-    try{
+    try {
       if (viewType.equalsIgnoreCase("text")) {
         View textBasedView = new TextBasedViewImpl(model, speed);
         controller = new AnimationControllerImpl(model, textBasedView, speed, outFile);

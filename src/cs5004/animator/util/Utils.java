@@ -19,8 +19,8 @@ public class Utils {
     frame.setSize(100, 100);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     JOptionPane.showMessageDialog(frame, error, "Error Message", JOptionPane.ERROR_MESSAGE);
-    throw new IllegalArgumentException("the command-line arguments are not valid\",\n" +
-            "            \"Error Message");
+    throw new IllegalArgumentException("the command-line arguments are not valid\",\n"
+            + "            \"Error Message");
   }
 
 }
