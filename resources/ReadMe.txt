@@ -4,6 +4,7 @@
 
 
 
+
 2. The changes in our previous project:
 
 In this project, we add an interactive view class called PlaybackViewImpl. In order to reduce code
