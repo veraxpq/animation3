@@ -74,7 +74,6 @@ In terms of test, we add a test class for our controller called AnimationControl
 covers basic tests for our controller.
 
 
-
 3. The introduction of the PlaybackViewImpl of our project:
 
 In PlaybackViewImpl, we set buttons in the panel so that users can decide when to speed up, slow
@@ -89,13 +88,13 @@ The user can click at loop button at anytime to see the looping animations. Mean
 can also perform their functionalities correctly when it's looping.
 
 
-
 4. The introduction of the controller:
 
 The EasyAnimator class works as a mini controller, which is responsible for handling the time,
 calling the view and the model, and decides when to display the corresponding view to the users.
 Specifically, we have a single controller called AnimationController, which has a start method
 to handle time, model and different type of views.
+
 
 5. Additional class:
 
